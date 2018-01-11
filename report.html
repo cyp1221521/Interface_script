@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+    body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../../common/js/echarts.common.min.js"></script>
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>接口测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2017-11-09 10:17:56</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:01.934404</p>
+<p class='attribute'><strong>状态:</strong> 通过 4 失败 4</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>接口测试报告</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='failClass'>
+        <td>testLogin_Normal.testLogin_Normal</td>
+        <td>5</td>
+        <td>4</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',5)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_001</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>
+        pt1.1: 用例编号: TC_N_001
+服务器返回码: 200
+服务器返回内容: {
+  "args": {}, 
+  "headers": {
+    "Accept-Encoding": "identity", 
+    "Connection": "close", 
+    "Host": "httpbin.org"
+  }, 
+  "origin": "183.129.254.162", 
+  "url": "http://httpbin.org/get"
+}
+
+服务器返回页面验证通过
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_002</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>
+        pt1.2: 用例编号: TC_N_002
+服务器返回码: 200
+服务器返回内容: {
+  "args": {
+    "{'a':'1','b':'2'}": ""
+  }, 
+  "headers": {
+    "Accept-Encoding": "identity", 
+    "Connection": "close", 
+    "Host": "httpbin.org"
+  }, 
+  "origin": "183.129.254.162", 
+  "url": "http://httpbin.org/get?{'a':'1','b':'2'}"
+}
+
+服务器返回页面验证通过
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_003</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>
+        pt1.3: 用例编号: TC_N_003
+服务器返回码: 200
+服务器返回内容: &lt;!DOCTYPE html&gt;
+&lt;html xmlns="http://www.w3.org/1999/html"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/&gt;
+    &lt;meta name="format-detection" content="telephone=no,email=no,adress=no"&gt;
+    &lt;!--rubik-ui样式--&gt;
+    &lt;link href="https://rerubx.zwjk.com/v1.4.0/css/rbk-v1.4.0.min.css" rel="stylesheet"/&gt;
+    &lt;link href="/css/appstyle-v1.0.0.min.css" rel="stylesheet"/&gt;
+    &lt;!--vue.js引入，目前仅有1-5-11页面在使用2017-05-02日--&gt;
+    &lt;!--jquery支持--&gt;
+    &lt;script type="text/javascript" src="https://rerubx.zwjk.com/v1.4.0/js/libs/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;!--touch手势事件支持--&gt;
+    &lt;!--rubik-ui核心js--&gt;
+    &lt;script type="text/javascript" src="https://rerubx.zwjk.com/v1.4.0/js/rbk-v1.4.0.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/utils/constants-v1.0.0.min.js"&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+        var RETURN_DATA_FORMAT = "json";
+        var flowurl = '';
+        var executionId;
+        var requestData;
+        var ucUiFlowId;
+        var stepId;
+        var branchName = '';
+        var ucUiFlowIdStr = '54acb980-3617-4d40-9991-4801c27e7c16';
+        if (flowurl == '') {
+            executionId = '';
+            requestData = {};
+            ucUiFlowId = ucUiFlowIdStr;
+            stepId = '';
+        } else if (flowurl != null) {
+            executionId = '';
+            ucUiFlowId = ucUiFlowIdStr;
+            stepId = '';
+            requestData = {};
+        }
+    &lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header class="rbk-titlebar"&gt;&lt;/header&gt;
+
+&lt;div class="rbk-content zfzt"&gt;
+    &lt;div class="defaultHidden" id="layerShade"&gt;
+        &lt;div class="rbk-list rbk-removecolor"&gt;
+            &lt;div class="rbk-listitem topblue" id="registAgain"&gt;
+                &lt;span class="icon-add"&gt;&lt;/span&gt; 再挂一次
+            &lt;/div&gt;
+            &lt;div class="rbk-listitem vistlist" style="position: relative;padding-right: 100px;line-height: 25px;"&gt;
+                                    &lt;span&gt;
+                北京大学口腔医院第五门诊部/
+                &lt;/span&gt;
+                                &lt;span&gt;修复专业&lt;/span&gt;
+            &lt;span&gt;
+                
+            &lt;/span&gt;
+                            &lt;/div&gt;
+            &lt;div id="doctorIntroduce_div" class="rbk-listitem vistlist"&gt;
+            
+                &lt;span id="planReplace" class="little lite"&gt;
+                                    &lt;/span&gt;
+            &lt;span id="doctorIntroduce" style="float: right;"&gt;
+                &lt;span class="lite"&gt;医生介绍&lt;/span&gt;&lt;span class="icon-go rightgo"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+            &lt;/div&gt;
+                                            &lt;/div&gt;
+        &lt;div class="rbk-navlist" id="serviceEvalution" rbk-role="cardlist"&gt;
+                    &lt;/div&gt;
+                
+    
+        &lt;div class="rbk-list rbk-removecolor" rbk-role="cardlist"&gt;
+            &lt;div class="rbk-listitem"&gt;
+                &lt;div style="margin-bottom: 10px;"&gt;
+                    &lt;span id="businessTypeShow"&gt;&lt;/span&gt;
+                                    &lt;/div&gt;
+                &lt;div class="little lite"&gt;
+                    &lt;span class="icon-time" style="position: relative;top: 1px"&gt;&lt;/span&gt;
+                    &lt;span style="font-size: 14px"&gt;2017/08/15&lt;/span&gt;
+                &lt;span id="payClinicStatus" style="display: none;"&gt;
+                                            &lt;span class="orange" style="float: right;color: #8f8f8f;"&gt;交易关闭&lt;/span&gt;
+                                    &lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="rbk-listitem little"&gt;
+            &lt;span style="font-size: 16px"&gt;08月21日&lt;/span&gt;
+                &lt;span id="visitTime" style="font-size: 14px"&gt;&lt;/span&gt;
+                &lt;span style="font-size: 16px"&gt;&lt;/span&gt;
+                                &lt;span style="float: right" id="registStatus"&gt;
+                                            &lt;span class="lite"&gt;已取消 &lt;/span&gt;
+                                    &lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class="rbk-listitem leftz lite breakword" id="clinicPlace-clinicPlaceTips"&gt;
+                                &lt;div id="clinicPlaceTips" style="font-size: 14px;line-height: 22px;"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+                    &lt;/div&gt;
+    
+
+
+
+        
+
+    
+                    
+
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript" src="/js/lib/linq.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/js/lib/moment.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/js/rubiku/payment.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+
+    var v = sessionStorage.getItem('needRefresh');
+    if (v == 'true') {
+        sessionStorage.removeItem('needRefresh');
+        location.reload();
+    }
+
+    rbk.ready(function (opt) {
+
+        var currentPageFormKey = 'visitRecordDetail';
+
+        var content = rbk.getCmp('content');
+
+        var titleBar = rbk.getCmp('titlebar');
+        titleBar.canBack(true, true);
+        titleBar.title('就诊记录');
+        titleBar.titleType({
+            "leftType": '1'
+        });
+
+        var businessType = 1;
+        if("1" == businessType){
+            document.getElementById("businessTypeShow").innerHTML = '预约';
+        }else if("2" == businessType){
+            document.getElementById("businessTypeShow").innerHTML = '挂号';
+        }
+
+        var transmitModel = {
+            ucUiFlowId: ucUiFlowId,
+            stepId: currentPageFormKey
+        }
+
+        $.get("/export/ui/getCommConfig", transmitModel, function (configs) {
+            //显示隐藏、展示内容配置
+            rbk.deployConfig(configs);
+
+            if ("A" == "A") {
+                $("#visitTime").text("上午");
+            } else if ("P" == "A") {
+                $("#visitTime").text("下午");
+            } else if ("F" == "A") {
+                $("#visitTime").text("白天");
+            } else if ("N" == "A") {
+                $("#visitTime").text("夜间");
+            } else if ("W" == "A") {
+                $("#visitTime").text("全天");
+            }
+
+            var configList = Enumerable.From(configs).Where(function (config) {
+                return "#registStatus" == config.componentKey &amp;&amp; '1' == config.componentValue
+            });
+
+            if (configList.ToArray().length &gt; 0) {
+
+                var visitTime = "";
+                var ampmType = "A";
+
+                if (rbk.isEmpty("")) {
+
+                    if ("A" == ampmType) {
+                        visitTime = "8:30";
+                    }
+                    else if ("P" == ampmType) {
+                        visitTime = "13:00";
+                    }
+                    else if ("F" == ampmType) {
+                        visitTime = "12:00";
+                    }
+                    else if ("N" == ampmType) {
+                        visitTime = "18:00";
+                    }
+                    else {
+                        visitTime = "12:00";
+                    }
+                }
+                else {
+                    if (moment("", "HH:mm").isValid()) {
+
+                        visitTime = "";
+
+                    } else {
+                        visitTime = "12:00";
+                    }
+                }
+
+                if (visitTime.length &gt; 5) {
+                    visitTime = visitTime.substr(0, 5);
+                }
+                var medicalDate = moment("2017-08-21 " + visitTime);
+                var now = moment("2017-11-09 10:17");
+                var configId = configList.First().ucUiConfigId;
+
+                Enumerable.From(configs).ForEach(function (config) {
+                    if (config.parentUcUiConfigId == configId) {
+                        if ("A" == config.componentKey) {
+                            if ("A" == config.componentValue &amp;&amp; 07 == '02') {
+                                $("#registStatus").remove();
+                            }
+                        } else if ("E" == config.componentKey) {
+
+                            config.componentDesc = JSON.parse(config.componentDesc);
+                            var judgeTime;
+
+                            /*notes: 如预约的时候不产生就诊时间，
+                                    那么由实施根据医院要求写个时间进去，
+                                    如果实施漏写，那么默认上午为8：30，
+                                    下午为13：00，全天为12：00*/
+                            //componentDesc {"value":0,"unit":"hh","day":3,"hour":5,"min":7}
+                            if ("time" == config.componentValue) { //（T-1 12:30 表示最晚在就诊前一天12点30分之前取消预约）
+                                judgeTime = medicalDate.add(config.componentDesc.day, 'days');
+                                judgeTime = moment({
+                                    y: judgeTime.year(),
+                                    M: judgeTime.month(),
+                                    d: judgeTime.date(),
+                                    h: config.componentDesc.hour,
+                                    m: config.componentDesc.min
+                                });
+                            }
+                            else if ("period" == config.componentValue) {//（-3小时表示最晚在就诊前3小时取消，3小时表示最晚在就诊后三小时取消）
+                                judgeTime = medicalDate.add(config.componentDesc.value, config.componentDesc.unit == "hh" ? 'h' : 'm');
+                            }
+
+                            if (now &gt; judgeTime &amp;&amp; (5== '1' || 5== '2'))
+                            {
+                                $("#registStatus").remove();
+                            }
+                        }
+                    }
+
+                    var strategy = "5";
+
+                    //是否支持挂号支付来显示隐藏支付订单状态
+                    if ("#payClinicFee" == config.componentKey &amp;&amp; '1' == config.componentValue &amp;&amp; strategy != 5) {
+                        $('#payClinicStatus').show();
+                    }
+
+                })
+            }
+
+            var s = $("#doctorIntroduce_div").html().trim();
+            var s1 = '';
+            var s2 = '';
+            if ($("#orderStatus").html() == undefined) {
+                s1 = '';
+            } else {
+                s1 = $("#orderStatus").html().trim();
+            }
+            if ($("#planReplace").html() == undefined) {
+                s2 = '';
+            } else {
+                s2 = $("#planReplace").html();
+            }
+//            if (s == '' || (( s1 == undefined || s1 == '' ) &amp;&amp; ( s2 == undefined || s2 == '' ))) {
+//                $('#doctorIntroduce_div').hide();
+//            }
+            $('#doctorIntroduce_div').hide();
+            if (typeof($('#clinicPlace')[0]) == "undefined" &amp;&amp; $("#clinicPlaceTips").html() == '') {
+                $("#clinicPlace-clinicPlaceTips").remove();
+            }
+
+
+            if (typeof($('.medicinesPlace')[0]) == "undefined" &amp;&amp; $(".medicinesPlaceTips").html() == '') {
+                $(".medicinesPlace-medicinesPlaceTips").remove();
+            }
+
+            //设置支付事件
+            var payClinicFee = $('#payClinicFee');
+            payClinicFee.on('touchmove', function () {
+                $(this).removeClass('rbkmove')
+            })
+            payClinicFee.on('tap', function () {
+                if (!$(this).hasClass('rbkmove')) {
+                    var patientOrderId = '65e1d16a-2740-42bb-a0e7-b4fa114e880f';
+                    sessionStorage.setItem('needRefresh', 'true');
+
+                    var payUrl = '/export/ui/ptientClinic/payment/' + patientOrderId + '/' + ucUiFlowId;
+                    var view = new rbk.view();
+                    view.open(payUrl);
+                }
+                $(this).removeClass('rbkmove')
+            })
+            $('#layerShade').removeClass('defaultHidden');
+        }, RETURN_DATA_FORMAT);
+
+        $('#cancelRegist_div').on('tap', function () {
+            var orderData = {
+                ucUiFlowId: ucUiFlowId,
+                patientOrderId: '65e1d16a-2740-42bb-a0e7-b4fa114e880f'
+            };
+            window.confirm("确认取消该预约?", function () {
+                load();
+                $.post("/export/ui/ptientClinic/cancelRegister", orderData, function (e) {
+                    sessionStorage.setItem('needRefresh', 'true');
+                    loadClose();
+                    setTimeout(function () {
+                        location.reload();
+                    })
+                }, RETURN_DATA_FORMAT).error(function (jqXHR, textStatus, errorThrown) {
+                    loadClose();
+                    setTimeout(function () {
+                        alert(jqXHR.responseText);
+                    })
+                });
+            });
+
+        });
+
+
+        /*查看处方清单*/
+        $('.medicinesDetail').on('tap', function () {
+            var prescriptionId = $(this).attr('prescriptionId');
+            var prescriptionNumber = $(this).attr('prescriptionNumber');
+            var prescriptionType = $(this).attr('prescriptionType');
+            var patientOrderId = '65e1d16a-2740-42bb-a0e7-b4fa114e880f';
+
+            var view = new rbk.view();
+            view.open('/v/ui/prescription.htm?patientOrderId=' + patientOrderId + '&amp;prescriptionId=' + prescriptionId + '&amp;prescriptionNumber=' + prescriptionNumber + '&amp;prescriptionType=' + prescriptionType);
+        });
+
+
+        /* 处方缴费，只有待支付才可以支付*/
+        var checkSubmitFlg = false;
+
+        function checkSubmit() {
+            if (!checkSubmitFlg) {
+                // 第一次提交;
+                checkSubmitFlg = true;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        rbk.platform.getUserOpenID(function (me) {
+            var userOpenId = me.user_openid;
+            $('.payMedicinesFee').on('tap', function () {
+                if (!checkSubmit()) {
+                    checkSubmitFlg = false;
+                    return;
+                }
+
+                var prescriptionId = $(this).attr('prescriptionId');
+                var prescriptionNumber = $(this).attr('prescriptionNumber');
+                var prescriptionType = $(this).attr('prescriptionType');
+                var prescriptionStatus = $(this).attr('prescriptionStatus');
+                var payMoney = $(this).attr('payMoney');
+                var patientOrderId = '65e1d16a-2740-42bb-a0e7-b4fa114e880f';
+
+                if ('01' != prescriptionStatus || parseFloat(payMoney) &lt; parseFloat(0.01)) {
+                    checkSubmitFlg = false;
+                    alert('处方信息有误，无法支付');
+                    return;
+                }
+
+                var prescription = {
+                    ucUiFlowId: ucUiFlowId,
+                    prescriptionId: prescriptionId,
+                    prescriptionNumber: prescriptionNumber,
+                    prescriptionType: prescriptionType
+                };
+
+                rbk.ajax("POST", "/export/ui/" + userOpenId + "/" + patientOrderId + "/prescription", function (res) {
+                    sessionStorage.setItem('needRefresh', 'true');
+                    var paymentSuccessPageUrl = '/export/patientOrderVisit/getPatientOrder/' + patientOrderId + '/' + userOpenId + '?ucUiFlowId=' + ucUiFlowId;
+                    paymentInstCode('', res.payPrescriptionRecordId, res.businessType, paymentSuccessPageUrl, false);
+
+                }, function (jqXHR, textStatus, errorThrown) {
+                    checkSubmitFlg = false;
+                    loadClose();
+                    setTimeout(function () {
+                        alert(jqXHR.responseText);
+                    })
+                }, prescription);
+
+
+            });
+        });
+
+
+    });
+
+
+&lt;/script&gt;
+&lt;style&gt;
+    .zfzt .rbk-table-view-cell {
+        font-size: 16px;
+    }
+
+    .lineelips {
+        font-size: 14px;
+    }
+
+    .bluetips {
+        font-size: 14px;
+    }
+
+    .time {
+        background: #ffedd1;
+        text-align: center;
+        font-size: 12px;
+        line-height: 25px;
+        margin-top: -1px;
+        position: relative;
+        z-index: 1;
+        height: 25px;
+    }
+
+    .tz {
+        font-size: 14px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #8f8f8f;
+        border-top: #c2c2c2 solid 1px;
+        width: 70%;
+        margin: 20px auto 3px;
+    }
+
+    .tz &gt; span {
+        background: #f0f3f5;
+        position: relative;
+        top: -10px;
+        padding: 0px 10px;
+    }
+
+    .breakword {
+        word-break: break-all;
+    }
+
+    .rbk-removecolor .topred.rbk-active {
+        background: #eee;
+    }
+&lt;/style&gt;
+
+    
+&lt;/body&gt;
+&lt;script type="text/javascript" src="/js/AppLayout-v1.0.0.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-92400421-1', 'auto');
+    ga('send', 'pageview');
+
+&lt;/script&gt;
+&lt;/html&gt;
+
+服务器返回页面验证通过
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_004</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        通过</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <pre>
+        pt1.4: 用例编号: TC_N_004
+&lt;class 'dict'&gt;
+{'Accept-Encoding': 'gzip', 'User-Agent': 'okhttp/3.2.0', 'Content-Length': '220', 'Host': 'open.zwjk.com', 'K': '1234567', 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Accept': 'application/xml'}
+服务器返回码: 200
+服务器返回内容: {"R":200,"M":"Has no update","T":5}
+服务器返回页面验证通过
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_005</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.5')" >
+        失败</a>
+
+    <div id='div_ft1.5' class="popup_window">
+        <pre>
+        ft1.5: 用例编号: TC_N_005
+&lt;class 'dict'&gt;
+{'Accept-Encoding': 'gzip', 'User-Agent': 'okhttp/3.2.0', 'Content-Length': '220', 'Host': 'open.zwjk.com', 'K': '1234567', 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Accept': 'application/xml'}
+服务器返回码: 405
+服务器返回内容: 
+Traceback (most recent call last):
+  File "D:\work_space\公司测试\接口自动化相关\InterfaceTest\testCase\Login\testLogin_Normal.py", line 20, in test_005
+    self.mytest.run_new("testLogin_Normal", "005")
+  File "D:\work_space\公司测试\接口自动化相关\InterfaceTest\common\configHttp.py", line 92, in run_new
+    assert check_code(result.status_code) == 0
+AssertionError
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>testLogin_Robustness.testLogin_Robustness</td>
+        <td>3</td>
+        <td>0</td>
+        <td>3</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',3)">详情</a></td>
+    </tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_001</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        失败</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <pre>
+        ft2.1: Traceback (most recent call last):
+  File "D:\work_space\公司测试\接口自动化相关\InterfaceTest\testCase\Login\testLogin_Robustness.py", line 6, in test_001
+    self.assertEqual(2,6)
+AssertionError: 2 != 6
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_002</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        失败</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <pre>
+        ft2.2: Traceback (most recent call last):
+  File "D:\work_space\公司测试\接口自动化相关\InterfaceTest\testCase\Login\testLogin_Robustness.py", line 8, in test_002
+    self.assertEqual(3,6)
+AssertionError: 3 != 6
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_003</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.3')" >
+        失败</a>
+
+    <div id='div_ft2.3' class="popup_window">
+        <pre>
+        ft2.3: Traceback (most recent call last):
+  File "D:\work_space\公司测试\接口自动化相关\InterfaceTest\testCase\Login\testLogin_Robustness.py", line 10, in test_003
+    self.assertEqual(4,6)
+AssertionError: 4 != 6
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>8</td>
+            <td>4</td>
+            <td>4</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:4, name:'通过'},
+                        {value:4, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

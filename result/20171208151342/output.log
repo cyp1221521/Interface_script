@@ -1,0 +1,56 @@
+2017-12-08 15:13:43,163 - root - INFO - ********TEST START********
+2017-12-08 15:13:43,163 - root - INFO - ********TEST START********
+2017-12-08 15:13:43,218 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,218 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,737 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,737 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,747 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,747 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,836 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,836 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,844 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,844 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,928 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,928 - root - INFO - ********测试通过********
+2017-12-08 15:13:43,937 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:43,937 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,017 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,017 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,024 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,024 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,098 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,098 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,106 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,106 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,208 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,208 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,246 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,246 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,318 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,318 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,327 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,327 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,416 - root - INFO - ********测试失败: 客户端错误********
+2017-12-08 15:13:44,416 - root - INFO - ********测试失败: 客户端错误********
+2017-12-08 15:13:44,417 - root - INFO - ********测试失败: 客户端错误********
+2017-12-08 15:13:44,417 - root - INFO - ********测试失败: 客户端错误********
+2017-12-08 15:13:44,424 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,424 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,513 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,513 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,520 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,520 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,590 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,590 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,597 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,597 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,691 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,691 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,700 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,700 - requests.packages.urllib3.connectionpool - INFO - Starting new HTTPS connection (1): open.zwjk.com
+2017-12-08 15:13:44,797 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,797 - root - INFO - ********测试通过********
+2017-12-08 15:13:44,797 - root - INFO - *********TEST END*********
+2017-12-08 15:13:44,797 - root - INFO - *********TEST END*********
+2017-12-08 15:13:45,848 - root - INFO - The test report has send to developer by email.
+2017-12-08 15:13:45,848 - root - INFO - The test report has send to developer by email.

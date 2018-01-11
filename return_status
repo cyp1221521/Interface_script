@@ -1,0 +1,11 @@
+text：获取接口返回值的文本格式
+
+json()：获取接口返回值的json()格式
+
+status_code：返回状态码（成功为：200）
+
+headers：返回完整的请求头信息（headers['name']：返回指定的headers内容）
+
+encoding：返回字符编码格式
+
+url：返回接口的完整url地址
